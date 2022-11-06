@@ -10,13 +10,13 @@ def create_feature():
     ,'Vehicle_condition','Type_of_order','Type_of_vehicle','multiple_deliveries','Festival','City','Time_taken_(min)'])
     return df
 
-
+# Đọc file .txt 
 def read_text_file(file_path):
     with open(file_path, 'r') as f:
         return f.readlines()
 
 
-# Lưu tất cả file txt vào list_a 
+# Lưu tất cả file txt vào list_information_all
 def save_text_file(path):
     list_information_all = []
 
@@ -47,15 +47,12 @@ def create_data_csv(list_information_all):
     return df 
 
 # Lưu dữ liệu, trả về đường link chứa file data mới tạo 
-def save_data_csv(df):
-    path = "D:/Github/Predict_the_time_of_arrival_for_the_delivery_persons/dataset/data_new/dataset_new_test.csv"
-    df.to_csv(path) 
-    return path
+def save_data_csv(df, path_save):
+    df.to_csv(path_save) 
 
 
-def main(path):
+def main(path, path_save):
     list_information_all = save_text_file(path)
     df =  create_data_csv(list_information_all) 
-    path = save_data_csv(df)
-    return path
+    save_data_csv(df,path_save)
     

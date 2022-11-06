@@ -1,39 +1,37 @@
 import create_data
+import pre_processing
 import os
 import pandas as pd 
-import numpy as np
-import matplotlib.pyplot as plt
-import plotly.graph_objects as go
-import plotly.offline as py
-import seaborn as sns
-
-import matplotlib.ticker as mtick
 
 def main():
 
-    # Tạo file dữ liệu mới và đọc file dữ liệu csv được khởi tạo 
-    # path = "D:/Github/Predict_the_time_of_arrival_for_the_delivery_persons/dataset/data"
-    # os.chdir(path)
-    # df = pd.read_csv(create_data.main(path))
+    # Tổng hợp tất cả dữ liệu (file .txt) vào 1 file .csv  
+    # Dữ liệu lưu tại file dataset.csv
 
-    # Đọc file dữ liệu có sẵn 
-    df = pd.read_csv("D:/Github/Predict_the_time_of_arrival_for_the_delivery_persons/dataset/data_new/dataset_new.csv")
-    del df['ID']
-    del df['Delivery_person_ID']
-    del df['Unnamed: 0']
-    for feature in df.columns:
-        if feature in ('ID', 'Delivery_person_ID', 'Delivery_person_Age','Delivery_person_Ratings','Restaurant_latitude','Restaurant_longitude'
-    ,'Delivery_location_latitude','Delivery_location_longitude','Order_Date','Time_Orderd','Time_Order_picked','Time_taken_(min)'):
-            continue
-        x = df[feature].value_counts()
+    path = "D:/Github/Predict_the_time_of_arrival_for_the_delivery_persons/dataset/data"
+    path_save = "D:/Github/Predict_the_time_of_arrival_for_the_delivery_persons/dataset/data_new/dataset.csv"
+    os.chdir(path)
+    create_data.main(path, path_save)
 
-        trace = go.Pie(labels = x.index, values = x, textinfo= 'value')
+    # ----------------------------------------------------------------------------------
+    # Pre-processing - Sử dụng file csv mới được tạo để xử lý lại dữ liệu 
 
-        #layout = go.Layout(title = feature)
+    # Đọc file dữ liệu csv mới được tạo 
+    df = pd.read_csv("D:/Github/Predict_the_time_of_arrival_for_the_delivery_persons/dataset/data_new/dataset.csv")
+    # Xử lý
+    path_save_new = "D:/Github/Predict_the_time_of_arrival_for_the_delivery_persons/dataset/data_new/dataset_new.csv"
+    pre_processing.main(df, path_save_new)
 
-        fig = go.Figure(data= [trace])
+    # Dữ liệu sau khi xử lý được lưu tại D:/Github/Predict_the_time_of_arrival_for_the_delivery_persons/dataset/data_new/dataset_new.csv
 
-        py.iplot(fig, image_width = 25, image_height = 25)
+
+
+    # EDA + deploy 
+    # Nhóm sẽ tiến hành trên file dataset_new.csv 
+
+
+
+    # Model 
 
 if __name__ == '__main__':
     main()
