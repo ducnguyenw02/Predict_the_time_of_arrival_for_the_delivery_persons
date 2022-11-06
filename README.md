@@ -1,2 +1,4 @@
-# Predict_the_time_of_arrival_for_the_delivery_persons
- 
+# How to run the program:
+## Create dataset from raw data:
+```console
+python3 src/merge_data.py
