@@ -5,10 +5,13 @@ import os
 
 def main():
     # Read .csv file
-    df = pd.read_csv(os.path.abspath("../delivery-time-prediction/dataset/dataset.csv"))
+    df = pd.read_csv(os.path.abspath("../Predict_the_time_of_arrival_for_the_delivery_persons/dataset/dataset.csv"))
     # Clean data
-    path_save_new = os.path.abspath("../delivery-time-prediction/dataset/dataset_clean.csv")
+    path_save_new = os.path.abspath("../Predict_the_time_of_arrival_for_the_delivery_persons/dataset/dataset_clean.csv")
     pre_processing.main(df, path_save_new)
+    df = pd.read_csv(path_save_new)
+    print(df[-10:])
+
 
     # EDA + deploy
     # Nhóm sẽ tiến hành trên file dataset_clean.csv
