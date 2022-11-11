@@ -7,3 +7,10 @@ python3 src/merge_data.py
 ```console
 python3 src/main.py
 ```
+## EDA:
+```console
+python3 src/eda.ipynb
+```
+```console
+python3 src/eda_dataset_clean.ipynb
+```
