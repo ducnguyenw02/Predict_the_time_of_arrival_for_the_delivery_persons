@@ -14,3 +14,10 @@ python3 src/eda.ipynb
 ```console
 python3 src/eda_dataset_clean.ipynb
 ```
+## Sweetviz
+```console 
+src/analyze.html
+```
+```console 
+src/analyze_dataset_clean.html
+```
