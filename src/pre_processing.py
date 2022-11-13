@@ -65,8 +65,14 @@ def drop_missing_big_data(df):
     # Xóa những hàng có trên 4 giá trị NaN
     for i in range(len(df)):
         if sum(np.array(df[i:i+1].isnull().sum())) > 3:
-            df = df.drop(df[i:i+1].index)
-
+            df = df.drop(df[i:i+1].index) 
+    # Xóa những hàng chứa giá trị lỗi 
+    df = df.drop(df[df['Restaurant_latitude']<0].index)
+    df = df.drop(df[df['Restaurant_longitude']<0].index)
+    df = df.drop(df[df['Delivery_location_latitude']<0].index)
+    df = df.drop(df[df['Delivery_location_longitude']<0].index)
+    df = df.drop(df[df['Delivery_person_ratings'] > 5].index)
+    df["Multiple_deliveries"] = df["Multiple_deliveries"].replace(to_replace = 0, value= 1)
     # Tạo lại cột index
     df["Index"] = 0
     for i in range(len(df)):
