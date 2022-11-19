@@ -21,3 +21,7 @@ src/analyze.html
 ```console 
 src/analyze_dataset_clean.html
 ```
+## Model selection and training:
+```console
+python3 src/Training_model_update.ipynb
+```
